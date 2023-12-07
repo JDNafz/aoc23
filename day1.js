@@ -1,27 +1,3 @@
-
-
-for (let i = 0; i <= input.length; i ++){
-  if (input[i] === '/n'){
-    console.log(input.slice(0,i))
-    return
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const input = `sixrrmlkptmc18zhvninek
 jcb82eightwond
 twofourthree778nineeight
@@ -1021,4 +997,28 @@ sixfconesix6three1sixsix
 eightone9nbdrkonenine8
 3two5lbrb43nine7
 foursix5eightfivezvnbsevenjcrzhxdzfb2
-jmgnfive7ffglffpjlvbtvl935zz`
+jmgnfive7ffglffpjlvbtvl935zz`;
+
+const inputExample = `1abc2
+pqr3stu8vwx
+a1b2c3d4e5f
+treb7uchet`;
+// console.log(input.match(/\n/g).length)
+
+function calibrate(str) {
+  let sum = 0;
+  let prev = 0;
+  for (let i = 0; i <= str.length; i++) {
+    if (str[i] === "\n" || i=== str.length) {
+      const line = str.slice(prev, i);
+      prev = i;
+      const first = line.match(/\d/);
+      const last = line.match(/\d(?=[^\d]*$)/);
+      // console.log("number:", line[first.index], line[last.index]);
+      sum += Number(first + last);
+      // console.log("new sum", sum);
+    }
+  }
+  return sum
+}
+console.log(calibrate(input));
